@@ -63,6 +63,9 @@
 		  <button v-on:click="foo = 'baz'">Change it</button>
 		</div>
 
+		<div id="app9">
+		  
+		</div>
         <script type="text/javascript">
         	var app = new Vue({ 
 			    el: '#app',
@@ -146,15 +149,15 @@
 			// 获得这个实例上的属性
 			// 返回源数据中对应的字段
 			vm.a == data.a // => true
-			alert("vm.a == data.a:"+(vm.a == data.a));
+			// alert("vm.a == data.a:"+(vm.a == data.a));
 			// 设置属性也会影响到原始数据
 			vm.a = 2
 			data.a // => 2
-			alert("vm.a = 2  data.a="+data.a);
+			// alert("vm.a = 2  data.a="+data.a);
 			// ……反之亦然
 			data.a = 3
 			vm.a // => 3
-			alert("data.a = 3  vm.a="+vm.a);
+			// alert("data.a = 3  vm.a="+vm.a);
 	//Eg2
 			var obj = {
 			  foo: 'bar'
@@ -165,6 +168,21 @@
 			new Vue({
 			  el: '#app8',
 			  data: obj
+			});
+	//Eg3
+			var data = { a: 1 }
+			var vm = new Vue({
+			  el: '#app9',
+			  data: data
+			})
+
+			vm.$data === data // => true
+			alert("vm.$data === data is "+(vm.$data === data));
+			vm.$el === document.getElementById('example') // => true
+			alert("vm.$el === document.getElementById('example') is "+(vm.$el === document.getElementById('app9')));
+			// $watch 是一个实例方法
+			vm.$watch('a', function (newValue, oldValue) {
+			  // 这个回调将在 `vm.a` 改变后调用
 			})
 //数据与方法 end
 
