@@ -57,6 +57,12 @@
 		  </ol>
 		</div>
 
+		<div id="app8">
+		  <p>{{ foo }}</p>
+		  <!-- 这里的 `foo` 不会更新！ -->
+		  <button v-on:click="foo = 'baz'">Change it</button>
+		</div>
+
         <script type="text/javascript">
         	var app = new Vue({ 
 			    el: '#app',
@@ -126,6 +132,41 @@
 			    ]
 			  }
 			});
+
+//数据与方法 start
+	//Eg1
+			// 我们的数据对象
+			var data = { a: 1 }
+
+			// 该对象被加入到一个 Vue 实例中
+			var vm = new Vue({
+			  data: data
+			})
+
+			// 获得这个实例上的属性
+			// 返回源数据中对应的字段
+			vm.a == data.a // => true
+			alert("vm.a == data.a:"+(vm.a == data.a));
+			// 设置属性也会影响到原始数据
+			vm.a = 2
+			data.a // => 2
+			alert("vm.a = 2  data.a="+data.a);
+			// ……反之亦然
+			data.a = 3
+			vm.a // => 3
+			alert("data.a = 3  vm.a="+vm.a);
+	//Eg2
+			var obj = {
+			  foo: 'bar'
+			}
+			//使用 Object.freeze()，这会阻止修改现有的属性
+			Object.freeze(obj)
+
+			new Vue({
+			  el: '#app8',
+			  data: obj
+			})
+//数据与方法 end
 
         </script>
     </body>
